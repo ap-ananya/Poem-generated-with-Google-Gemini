@@ -4,7 +4,6 @@ description: To use the Google Generative AI model to generate poems in differen
 prerequisites: JavaScript, React
 versions: Node.js 18, Vite 5, React 18
 tags:
-  - intermediate
   - javascript
 ---
 
