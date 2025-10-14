@@ -30,9 +30,9 @@ Now that we have our base React application ready to go, let's initiate our deve
 
 ## Creating the Poem Generator
 
-Let's get started with becoming our very own AI poet! In the **src** folder of your project, create a **PoemBox.jsx** file. Here, we're going to connect to Gemini and generate our poems!
+Let's get started with becoming our very own AI poet! In the **src** folder of our project, create a **PoemBox.jsx** file. Here, we're going to connect to Gemini and generate our poems!
 
-Here, let's also create a variable called `genAI`, and initialize our instance of the model. Remember your API key that's been stored away? Go ahead and copy that into your instance!
+Here, let's also create a variable called `genAI`, and initialize our instance of the model.
 
 ## Using Gemini
 
