@@ -1,14 +1,11 @@
 ---
 title: Generate a Poem with Google Gemini
-description: Learn how to use the Google Generative AI model to generate poems in different styles.
+description: To use the Google Generative AI model to generate poems in different styles.
 prerequisites: JavaScript, React
 versions: Node.js 18, Vite 5, React 18
 tags:
   - intermediate
   - javascript
-courses:
-  - javascript
-  - framework-valley-react
 ---
 
 ## Introduction
@@ -19,71 +16,23 @@ Words, lyrics, music, poetry. Whether it's John Lennon or William Blake, songwri
   link="https://raw.githubusercontent.com/codedex-io/projects/main/projects/generate-a-poem-with-google-gemini/poem_ai_screen_result.png"
   description="generator demo"
 />
-
-Before we dive into the wonders of literary voices and how their styles can be mimicked, let's go over the basics of what you will need to complete this project.
-
 ## Get an API Key 🔑
 
 To use the Gemini API, we need an API key. Visit the [Google AI Studio](https://aistudio.google.com/app/apikey), and sign in to a Google account to quickly create a key. 
 
-**Note:** Store your Google Gemini key in a separate file for best practice.
-
-For more information, you can check out the [Google Gemini Documentation](https://ai.google.dev/gemini-api/docs/get-started/tutorial?lang=node).
-
 ## Setting Up 🔨
 
-- Initialize your React application using Vite. Check out our [tutorial on setting up with Vite](https://www.codedex.io/projects/create-a-react-app-with-vite) if you need to!
-- Install the necessary packages for using the Gemini API in your project directory.
-
-```
-npm install @google/generative-ai
-```
+- Initialize your React application using Vite. 
 
 ### Initialize Your Server
 
 Now that we have our base React application ready to go, let's initiate our development server!
 
-```
-npm install
-npm run dev
-```
-
 ## Creating the Poem Generator
 
 Let's get started with becoming our very own AI poet! In the **src** folder of your project, create a **PoemBox.jsx** file. Here, we're going to connect to Gemini and generate our poems!
 
-Let's get started by importing the model:
-
-```js
-import { GoogleGenerativeAI } from "@google/generative-ai";
-```
-
-Define a `<PoemBox>` function component. Then, we're going to create a function called `fetchPoem()`. We'll place our data fetching code here in a `try`-`catch` block so we're able to detect and understand errors when we're developing!
-
 Here, let's also create a variable called `genAI`, and initialize our instance of the model. Remember your API key that's been stored away? Go ahead and copy that into your instance!
-
-```js
-import { GoogleGenerativeAI } from "@google/generative-ai";
-export default function PoemBox() {
-  function fetchPoem() {
-    try {
-      const genAI = new GoogleGenerativeAI("YOUR_API_KEY"); // replace with your key
-    }
-  } catch (err) {
-    // error handle here
-  }
-}
-```
-
-Now, let's focus on setting up the state so we can update our poem! You're going to create three state variables inside your `<PoemBox>` component.
-
-```js
-const [response, setResponse] = useState("");
-const [error, setError] = useState(null);
-const [currentTime, setCurrentTime] = useState(new Date());
-```
-
-Going back to our `fetchPoem()` function, let's get started with prompting Gemini!
 
 ## Using Gemini
 
@@ -93,23 +42,6 @@ At this point, our API key should be ready to go! Let's use the current Google g
 - Await a result from the model.
 - Generate a response that we'll use to update the state.
 - Catch if an error occurs.
-
-Your function should now look like so
-
-```js
-const fetchPoem = async () => {
-  try {
-    const genAI = new GoogleGenerativeAI("YOUR_API_KEY");
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const prompt = "AI PROMPT HERE";
-    const result = await model.generateContent(prompt);
-    const text = result.response.text();
-    setResponse(text);
-  } catch (err) {
-    setError(err.message);
-  }
-};
-```
 
 ### More on Prompting
 
@@ -136,45 +68,12 @@ Prompting on Gemini is like prompting for any other LLM. Here are some things yo
 - If you want: a poem similar to work by Rupi Kaur
 - Prompt for: "write me a 10-word poem in the tone of milk and honey by rupi kaur."
 
-**Note:** Be respectful of literary intellectual property, technology is a tool that should be used ethically. Learn more about AI Responsibility [here](https://ai.google/responsibility/principles/).
-
 ## The Timer
 
 We're just a tad bit closer to unlocking your inner AI poet! We want our component to generate a new poem about every 30 seconds!
-
-**Note:** For testing purposes, decrease the interval between each poem to observe the results more quickly. However, we don’t recommend promoting the model too quickly since it can overwhelm the version of our model.
-
-Let's use a handy `useEffect()` hook to create an interval!
-
-```js
-useEffect(() => {
-  // Fetch a poem on initial render
-  fetchPoem();
-
-  // Fetch a new poem every 30 seconds
-  const poemIntervalId = setInterval(fetchPoem, 30000);
-  return () => {
-    clearInterval(poemIntervalId); // Cleanup poem interval on component unmount
-  };
-}, []);
-```
 
 ## Completion
 
 Let's display our poems! ✍️
 
-Remember the error handling we set up in our `fetchPoem()` function? We'll conditionally render our poem based on whether there are any errors. Our return statement should look like this:
-
-```js
-return <div>{error ? <p>{error}</p> : <p>{response}</p>}</div>;
-```
-
-That's it you just created a `<PoemBox>` component! Don't forget to import it and use the `<PoemBox>` component in the **App.js** file to make it all come together.
-
-
-Here are some examples we made to inspire your creativity:
-
-<RoundedImage
-  link="https://raw.githubusercontent.com/codedex-io/projects/main/projects/generate-a-poem-with-google-gemini/poem_css_examples.png"
-  description="generator css demos"
-/>
+That's it we just created a `<PoemBox>` component! Don't forget to import it and use the `<PoemBox>` component in the **App.js** file to make it all come together.
